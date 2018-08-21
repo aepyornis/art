@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if type python3 > /dev/null
+then
+    python3 -m http.server 8080
+elif type ruby > /dev/null
+then
+    ruby -run -ehttpd . -p8080
+elif type python2 > /dev/null
+then
+    python2 -m SimpleHTTPServer 8080
+elif type php > /dev/null
+then
+    php -S 127.0.0.1:8080
+else
+    echo "Could not find a suitable program to start the server"
+fi
