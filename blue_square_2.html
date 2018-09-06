@@ -5,28 +5,23 @@
     <title>Blue Square #2</title>
     <style>
 
-     #square {
+     .square {
 	 position: absolute;
 	 top: 28.2%;
 	 height: 6em;
 	 width: 6em;
 	 background-color: #002fa7;
-	 animation-duration: 25s;
 	 animation-iteration-count: infinite;
 	 animation-name: move;
 	 animation-direction: alternate;
      }
 
+     #square {
+	 animation-duration: 25s;
+     }
+
      #square2 {
-	 position: absolute;
-	 top: 28.2%;
-	 height: 6em;
-	 width: 6em;
-	 background-color: #002fa7;
 	 animation-duration: 23s;
-	 animation-iteration-count: infinite;
-	 animation-name: move;
-	 animation-direction: alternate;
      }
 
      @keyframes move {
@@ -45,10 +40,10 @@
 
   <body>
 
-    <div id="square">
+    <div id="square" class="square">
     </div>
-
-    <div id="square2">
+    
+    <div id="square2" class="square">
     </div>
     
   </body>
