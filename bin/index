@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+def title(f)
+  File.read(f).scan(/<title>(.*)<\/title>/).first.first
+end
+
+def link(f)
+  "<a href=\"/#{f}\">#{title(f)}</a>\n"
+end
+
+files_html = Dir['*.html']
+               .delete_if { |f| f == 'index.html' }
+               .sort_by { |f| File.ctime(f) }
+               .reduce('') { |memo, f| memo << link(f) }
+
+css = <<-CSS
+body {
+  padding-top: 8%;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+a {
+  display: block;
+  line-height: 1.5em;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+CSS
+
+html = <<-HTML
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>| | | | | | | art</title>
+<style>
+#{css}
+</style>
+</head>
+<body>
+#{files_html}
+</body>
+</html>
+HTML
+
+
+File.write('index.html', html)
